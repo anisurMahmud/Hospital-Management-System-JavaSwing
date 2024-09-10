@@ -40,15 +40,26 @@ public class LabTestSetup extends javax.swing.JFrame {
                 Double.parseDouble(txtTestCost.getText()),
                 checkBoxAvailable.isSelected(),
                 TypePropFieldBox.getText());
+            System.out.println(pTest.returnPTestInfo());
+            
         }
         else if(RadioTestRdioBttn.isSelected() && !PathoTestRdioBttn.isSelected()){
             RadiologicalTestController rTest = new RadiologicalTestController();
             rTest.initTest(
                 txtTestTitle.getText(), 
                 Double.parseDouble(txtTestCost.getText()),
+               checkBoxAvailable.isSelected(),
+                TypePropFieldBox.getText());
+            System.out.println("r"+rTest.returnRTestInfo());
+        }
+    }
+    public void controllerCall(){
+                PathologicalTestController pTest = new PathologicalTestController();
+        pTest.initTest(
+                txtTestTitle.getText(), 
+                Double.parseDouble(txtTestCost.getText()),
                 checkBoxAvailable.isSelected(),
                 TypePropFieldBox.getText());
-        }
     }
 
     /**
@@ -72,7 +83,6 @@ public class LabTestSetup extends javax.swing.JFrame {
         checkBoxAvailable = new javax.swing.JCheckBox();
         btnSubmit = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        labelOutput = new javax.swing.JLabel();
         TestType = new javax.swing.JLabel();
         PathoTestRdioBttn = new javax.swing.JRadioButton();
         RadioTestRdioBttn = new javax.swing.JRadioButton();
@@ -124,8 +134,6 @@ public class LabTestSetup extends javax.swing.JFrame {
             }
         });
 
-        labelOutput.setText("output");
-
         TestType.setText("Test Type");
 
         buttonGroup1.add(PathoTestRdioBttn);
@@ -162,7 +170,7 @@ public class LabTestSetup extends javax.swing.JFrame {
         });
         ChangeWindow.add(Home);
 
-        patholoSearch.setText("Pathological Search");
+        patholoSearch.setText("Lab Test Search");
         patholoSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 patholoSearchActionPerformed(evt);
@@ -181,9 +189,7 @@ public class LabTestSetup extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labelOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
+                        .addGap(299, 299, 299)
                         .addComponent(txtTestTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(87, 87, 87)
@@ -218,7 +224,7 @@ public class LabTestSetup extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(23, 23, 23)
                                         .addComponent(TypePropFieldBox, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,9 +264,7 @@ public class LabTestSetup extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGap(98, 98, 98))
         );
 
         pack();
@@ -279,14 +283,14 @@ public class LabTestSetup extends javax.swing.JFrame {
               //  checkBoxAvailable.isSelected());
         
         //String title = txtTestTitle.getText();
-        PathologicalTestController pTest = new PathologicalTestController();
-        pTest.initTest(
-                txtTestTitle.getText(), 
-                Double.parseDouble(txtTestCost.getText()),
-                checkBoxAvailable.isSelected(),
-                TypePropFieldBox.getText());
+
         //labelOutput.setText(pTest.returnRTestInfo());
 //        controllerCallOnTestSelection();
+        controllerCall();
+//        try {
+//            controllerCallOnTestSelection();
+//        } catch (Exception e) {
+//        }
         new TestOutput().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSubmitActionPerformed
@@ -379,7 +383,6 @@ public class LabTestSetup extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel labelAvailable;
     private javax.swing.JLabel labelCost;
-    private javax.swing.JLabel labelOutput;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JMenuItem patholoSearch;
     private javax.swing.JTextField txtTestCost;
