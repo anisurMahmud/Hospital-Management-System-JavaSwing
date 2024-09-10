@@ -5,6 +5,7 @@
 package com.hms.view;
 
 import com.hms.controller.PathologicalTestController;
+import com.hms.controller.RadiologicalTestController;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,19 +19,53 @@ public class TestOutput extends javax.swing.JFrame {
      */
 //    public void showDetails(){
 //        PathologicalTestController pTest = new PathologicalTestController();
-//        Output.setText(pTest.returnPTestInfo());
+//        Output.setText(pTest.returnRTestInfo());
 //    }
+    private String output;
     public TestOutput() {
         initComponents();
-        PathologicalTestController pTest = new PathologicalTestController();
-        detailsBox.setText(pTest.returnPTestInfo());
-        DefaultTableModel model = new DefaultTableModel();
-        model.addRow(pTest.arrayOfObjects().toArray());
-        jTable1.setModel(model);
+        populateTable();
+//        PathologicalTestController pTest = new PathologicalTestController();
+//        detailsBox.setText(pTest.returnRTestInfo());
+//        DefaultTableModel tableModel = (DefaultTableModel)outputTable.getModel();
+//        tableModel.addRow(pTest.returnRTestInfo());
+//        model.addRow(pTest.arrayOfObjects().toArray());
+//        jTable1.setModel(model);
     }
     
-
-   
+    public String outputResult(){
+  
+        PathologicalTestController pTest = new PathologicalTestController();
+        RadiologicalTestController rTest = new RadiologicalTestController();
+        
+        try {
+            if ((pTest.returnPTestInfo() != null) && (rTest.returnRTestInfo() == null)) {
+                output = pTest.returnPTestInfo();
+            }
+            else if ((rTest.returnRTestInfo() != null) && (pTest.returnPTestInfo() == null)) {
+                output = rTest.returnRTestInfo();
+            }
+        } catch (Exception e) {
+        }
+        return output;
+    }
+    public void populateTable(){
+        PathologicalTestController pTest = new PathologicalTestController();
+//       detailsBox.setText(pTest.returnRTestInfo());
+        DefaultTableModel tableModel = (DefaultTableModel)outputTable.getModel();
+       
+        Object[] rowData = pTest.returnPTestInfo().split("\r\n");
+//       Object[] rowData = pTest.arrayOfObjects().toArray();
+        tableModel.addRow(rowData);
+       
+//       for(int index = 0; index<pTest.arrayOfObjects().size();index++){
+//           rowData[0] = pTest.arrayOfObjects().get(index);
+//           rowData[1] = pTest.arrayOfObjects().get(index);
+//           rowData[2] = pTest.arrayOfObjects().get(index);
+//           rowData[3] = pTest.arrayOfObjects().get(index);
+//           tableModel.addRow(rowData);
+//       }
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,47 +77,33 @@ public class TestOutput extends javax.swing.JFrame {
     private void initComponents() {
 
         Output = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        detailsBox = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        outputTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Output.setText("Details of Query");
 
-        detailsBox.setColumns(20);
-        detailsBox.setRows(5);
-        jScrollPane1.setViewportView(detailsBox);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        outputTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title", "Cost", "Availability", "Extra"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(outputTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(Output)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addComponent(Output)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,11 +113,9 @@ public class TestOutput extends javax.swing.JFrame {
                         .addGap(49, 49, 49)
                         .addComponent(Output))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         pack();
@@ -140,9 +159,7 @@ public class TestOutput extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Output;
-    private javax.swing.JTextArea detailsBox;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable outputTable;
     // End of variables declaration//GEN-END:variables
 }

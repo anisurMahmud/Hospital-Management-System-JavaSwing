@@ -12,12 +12,12 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Nazmul
  */
-public class PathologicalTestSearch extends javax.swing.JFrame {
+public class LabTestSearch extends javax.swing.JFrame {
 
     /**
      * Creates new form PathologicalTestShow
      */
-    public PathologicalTestSearch() {
+    public LabTestSearch() {
         initComponents();
     }
 
@@ -135,13 +135,13 @@ public class PathologicalTestSearch extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(PathologicalTestSearch.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(LabTestSearch.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(PathologicalTestSearch.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(LabTestSearch.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(PathologicalTestSearch.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(LabTestSearch.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(PathologicalTestSearch.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(LabTestSearch.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //        //</editor-fold>
@@ -149,7 +149,7 @@ public class PathologicalTestSearch extends javax.swing.JFrame {
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new PathologicalTestSearch().setVisible(true);
+//                new LabTestSearch().setVisible(true);
 //            }
 //        });
 //    }

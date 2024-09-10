@@ -14,7 +14,7 @@ import java.util.*;
 public class PathologicalTestController {
     
     static PathologicalTest PTest;
-    public void initPathologicalTest(String title, double cost, boolean isAvailable, String reAgent){
+    public void initTest(String title, double cost, boolean isAvailable, String reAgent){
         PTest = new PathologicalTest(title, cost, isAvailable, reAgent);    
     }
     
@@ -23,7 +23,7 @@ public class PathologicalTestController {
         return PTest.returnLabTestInfo();
     }
     public ArrayList arrayOfObjects(){
-        ArrayList<Object> objectList = new ArrayList<>();
+        ArrayList<PathologicalTest> objectList = new ArrayList<>();
         objectList.add(PTest);
         return objectList;
     }

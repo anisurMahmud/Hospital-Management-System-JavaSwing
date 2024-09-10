@@ -22,14 +22,7 @@ public class RadiologicalTest extends LabTest implements CostCalculation, TestRe
         this.isAvailable = isAvailable;   
         this.plateDimension = plateDimension;
     }
-    public String show(){
-        
-        String output = "Test name: "+this.getTitle()+ "\r\n"
-                + " Cost: "+this.getCost()+"\r\n"
-                + " Plate Dimension: "+this.plateDimension+"\r\n"
-                + " Availability: "+this.isIsAvailable();
-        return output;
-    }
+    
 //    void search(String title){
 //        if(this.title == title)
 //            show();
@@ -40,6 +33,7 @@ public class RadiologicalTest extends LabTest implements CostCalculation, TestRe
     /**
      * @return the title
      */
+    @Override
     public String getTitle() {
         return title;
     }
@@ -54,6 +48,7 @@ public class RadiologicalTest extends LabTest implements CostCalculation, TestRe
     /**
      * @return the cost
      */
+    @Override
     public double getCost() {
         return cost;
     }
@@ -68,6 +63,7 @@ public class RadiologicalTest extends LabTest implements CostCalculation, TestRe
     /**
      * @return the isAvailable
      */
+    @Override
     public boolean isIsAvailable() {
         return isAvailable;
     }
@@ -99,7 +95,10 @@ public class RadiologicalTest extends LabTest implements CostCalculation, TestRe
 
     @Override
     public String returnLabTestInfo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.getTitle()+ "\r\n"
+                +this.getCost()+"\r\n"
+                +this.plateDimension+"\r\n"
+                +this.isIsAvailable();
     }
 
     

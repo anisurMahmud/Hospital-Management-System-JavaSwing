@@ -4,33 +4,50 @@
  */
 package com.hms.view;
 
-import com.hms.model.PathologicalTest;
 import com.hms.controller.PathologicalTestController;
+import com.hms.controller.RadiologicalTestController;
 
 /**
  *
  * @author Nazmul
  */
-public class PathologicalTestSetup extends javax.swing.JFrame {
+public class LabTestSetup extends javax.swing.JFrame {
 
     /**
      * Creates new form PathologicalTestSetup
      */
-    public PathologicalTestSetup() {
+    public LabTestSetup() {
         initComponents();
     }
     public void TestTypeCheck(){
-        if(PathoTestRdioBttn.isSelected() && RadioTestRdioBttn.isSelected()){
-            Type.setText("Null");
-            TypePropFieldBox.setText("Select only the specific One");
-        }
-        else if(PathoTestRdioBttn.isSelected() && !RadioTestRdioBttn.isSelected()){
+        
+        if(PathoTestRdioBttn.isSelected() && !RadioTestRdioBttn.isSelected()){
             Type.setText("Reagent");
             TypePropFieldBox.setText("");
+           
         }
         else if(!PathoTestRdioBttn.isSelected() && RadioTestRdioBttn.isSelected()){
             Type.setText("Plate Dimension");
             TypePropFieldBox.setText("");
+        }
+    }
+    
+    public void controllerCallOnTestSelection(){
+        if(PathoTestRdioBttn.isSelected()&& !RadioTestRdioBttn.isSelected()){
+            PathologicalTestController pTest = new PathologicalTestController();
+            pTest.initTest(
+                txtTestTitle.getText(), 
+                Double.parseDouble(txtTestCost.getText()),
+                checkBoxAvailable.isSelected(),
+                TypePropFieldBox.getText());
+        }
+        else if(RadioTestRdioBttn.isSelected() && !PathoTestRdioBttn.isSelected()){
+            RadiologicalTestController rTest = new RadiologicalTestController();
+            rTest.initTest(
+                txtTestTitle.getText(), 
+                Double.parseDouble(txtTestCost.getText()),
+                checkBoxAvailable.isSelected(),
+                TypePropFieldBox.getText());
         }
     }
 
@@ -263,12 +280,13 @@ public class PathologicalTestSetup extends javax.swing.JFrame {
         
         //String title = txtTestTitle.getText();
         PathologicalTestController pTest = new PathologicalTestController();
-        pTest.initPathologicalTest(
+        pTest.initTest(
                 txtTestTitle.getText(), 
                 Double.parseDouble(txtTestCost.getText()),
                 checkBoxAvailable.isSelected(),
                 TypePropFieldBox.getText());
-        //labelOutput.setText(pTest.returnPTestInfo());
+        //labelOutput.setText(pTest.returnRTestInfo());
+//        controllerCallOnTestSelection();
         new TestOutput().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSubmitActionPerformed
@@ -290,7 +308,7 @@ public class PathologicalTestSetup extends javax.swing.JFrame {
     private void patholoSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patholoSearchActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new PathologicalTestSearch().setVisible(true);
+        new LabTestSearch().setVisible(true);
     }//GEN-LAST:event_patholoSearchActionPerformed
 
     private void PathoTestRdioBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PathoTestRdioBttnActionPerformed
@@ -325,20 +343,20 @@ public class PathologicalTestSetup extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(PathologicalTestSetup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(LabTestSetup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(PathologicalTestSetup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(LabTestSetup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(PathologicalTestSetup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(LabTestSetup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(PathologicalTestSetup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(LabTestSetup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new PathologicalTestSetup().setVisible(true);
+//                new LabTestSetup().setVisible(true);
 //            }
 //        });
 //    }
