@@ -101,6 +101,14 @@ public class PathologicalTest extends LabTest implements CostCalculation, TestRe
                 + this.isIsAvailable() + "\r\n"
                 + this.getReagent();
     }
+
+    @Override
+    public String toString() {
+        return this.getTitle()+ "\r\n"
+                + this.getCost()+"\r\n"
+                + this.isIsAvailable() + "\r\n"
+                + this.getReagent();
+    }
     
     
 }

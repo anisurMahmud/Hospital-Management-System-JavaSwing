@@ -33,29 +33,43 @@ public class TestOutput extends javax.swing.JFrame {
 //        jTable1.setModel(model);
     }
     
-    public String outputResult(){
-  
-        PathologicalTestController pTest = new PathologicalTestController();
-        RadiologicalTestController rTest = new RadiologicalTestController();
-        
-        try {
-            if ((pTest.returnPTestInfo() != null) && (rTest.returnRTestInfo() == null)) {
-                output = pTest.returnPTestInfo();
-            }
-            else if ((rTest.returnRTestInfo() != null) && (pTest.returnPTestInfo() == null)) {
-                output = rTest.returnRTestInfo();
-            }
-        } catch (Exception e) {
-        }
-        return output;
-    }
+//    public String outputResult(){
+//  
+//        PathologicalTestController pTest = new PathologicalTestController();
+//        RadiologicalTestController rTest = new RadiologicalTestController();
+//        
+////        try {
+////            if ((pTest.returnPTestInfo() != null) && (rTest.returnRTestInfo() == null)) {
+////                output = pTest.returnPTestInfo();
+////               
+////                System.out.println(output);
+////            }
+////            else if ((rTest.returnRTestInfo() != null) && (pTest.returnPTestInfo() == null)) {
+////                output = rTest.returnRTestInfo();
+////             
+////               System.out.println(output);
+////            }
+////        } catch (Exception e) {
+////        }
+//
+//          if(pTest.arrayOfObjects().toString()== null){
+//              System.out.println("P is null");
+//              output = rTest.arrayOfObjects().toString();
+//          }
+//          if(rTest.arrayOfObjects().toString()== null){
+//              output = pTest.arrayOfObjects().toString();
+//              System.out.println("R is null");
+//          }
+//        return output;
+//    }
     public void populateTable(){
         PathologicalTestController pTest = new PathologicalTestController();
 //       detailsBox.setText(pTest.returnRTestInfo());
         DefaultTableModel tableModel = (DefaultTableModel)outputTable.getModel();
-       
-        Object[] rowData = pTest.returnPTestInfo().split("\r\n");
-//       Object[] rowData = pTest.arrayOfObjects().toArray();
+//        outputResult();
+        //Object[] rowData = pTest.returnPTestInfo().split("\r\n");
+        //Object[] rowData = outputResult().split("\r\n");
+        Object[] rowData = pTest.arrayOfObjects().toString().split("\r\n");
         tableModel.addRow(rowData);
        
 //       for(int index = 0; index<pTest.arrayOfObjects().size();index++){
@@ -79,6 +93,10 @@ public class TestOutput extends javax.swing.JFrame {
         Output = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         outputTable = new javax.swing.JTable();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,32 +112,65 @@ public class TestOutput extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(outputTable);
 
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("Home");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Search");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(11, 11, 11)
                 .addComponent(Output)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(Output))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(185, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)
+                        .addComponent(Output)))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        new Home().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        new LabTestSearch().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,6 +210,10 @@ public class TestOutput extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Output;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable outputTable;
     // End of variables declaration//GEN-END:variables

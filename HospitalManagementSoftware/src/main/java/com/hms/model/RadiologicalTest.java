@@ -101,5 +101,13 @@ public class RadiologicalTest extends LabTest implements CostCalculation, TestRe
                 +this.isIsAvailable();
     }
 
+    @Override
+    public String toString() {
+        return this.getTitle()+ "\r\n"
+                +this.getCost()+"\r\n"
+                +this.plateDimension+"\r\n"
+                +this.isIsAvailable();
+    }
+    
     
 }
